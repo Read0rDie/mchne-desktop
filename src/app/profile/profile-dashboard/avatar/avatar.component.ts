@@ -14,4 +14,8 @@ export class AvatarComponent implements OnInit {
   ngOnInit() {
   }
 
+  setUrl(email : string){
+
+  }
+
 }
