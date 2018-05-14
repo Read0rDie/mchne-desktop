@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AvatarComponent } from './avatar/avatar.component';
 
 @Component({
   selector: 'app-profile-dashboard',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private avatar: AvatarComponent) { }
 
   ngOnInit() {
   }
