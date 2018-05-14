@@ -1,0 +1,12 @@
+.div{    
+    &-icon{
+        width : 210px;
+        margin : auto;
+        padding : 10px;
+        float: left;
+    }    
+
+    &-contain{
+        max-width: 50;
+    }
+}
