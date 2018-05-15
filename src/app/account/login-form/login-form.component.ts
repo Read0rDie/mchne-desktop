@@ -48,10 +48,15 @@ export class LoginFormComponent implements OnInit, OnDestroy {
         .subscribe(
           result => {                               
             if (result) {
+              this.changeEmail(value.email);
               this.router.navigate(['']);             
             }
           },
           error => this.errors = error);        
     }
+  }
+
+  changeEmail(email:string){
+    localStorage.email = email;
   }
 }

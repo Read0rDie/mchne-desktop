@@ -39,10 +39,9 @@ export class AvatarService extends BaseService {
     let options = new RequestOptions({ headers: headers });
     let params: URLSearchParams = new URLSearchParams();
     params.set('email', email);    
-    options.params = params;
+    options.search = params;
 
-    var response = this.http.get(this.baseUrl + "/account/getavatar", options).map(res => res.json());
-
+    var response = this.http.get(this.baseUrl + "/account/getavatar", options).map(res => res.json().avatarUrl);
     return response;
   }
 
@@ -52,10 +51,9 @@ export class AvatarService extends BaseService {
     let params: URLSearchParams = new URLSearchParams();
     params.set('email', email);
     params.set('imageUrl', url);
-    options.params = params;
+    options.search = params;
 
     var response = this.http.get(this.baseUrl + "/account/changeavatar", options).map(res => res.json());
-
     return response;
   }
 

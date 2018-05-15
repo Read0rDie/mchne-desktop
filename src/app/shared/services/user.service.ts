@@ -60,20 +60,19 @@ export class UserService extends BaseService {
             .map(res => res.json())              
             .map(res => {
                 localStorage.setItem('auth_token', res.auth_token);
-                this.loggedIn = true;
-                this.userEmail = email;
+                localStorage.setItem('email', email);
+                this.loggedIn = true;                
                 this._authNavStatusSource.next(true);
                 return true;
             })          
             .catch(this.handleError);
-
         return response;
     }
 
   logout() {
     localStorage.removeItem('auth_token');
-    this.loggedIn = false;
-    this.userEmail = '';
+    localStorage.removeItem('email');
+    this.loggedIn = false;    
     this._authNavStatusSource.next(false);
   }
 

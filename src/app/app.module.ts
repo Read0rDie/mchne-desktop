@@ -23,8 +23,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LibraryComponent } from './library/library.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { SharedModule } from './shared/modules/shared.module';
-
+import { GlobalServiceModule } from './shared/modules/global-service.module';
 
 @NgModule({
   declarations: [
@@ -38,14 +37,18 @@ import { SharedModule } from './shared/modules/shared.module';
     AccountModule,
     ProfileModule,
     HttpModule,
-    SharedModule.forRoot(),
     BsDropdownModule.forRoot(),
     AppRoutingModule,
+    GlobalServiceModule.forRoot(),
   ],
-  providers: [ConfigService, { 
-    provide: XHRBackend, 
-    useClass: AuthenticateXHRBackend
-  }],
+  providers: [
+    ConfigService, 
+    { 
+      provide: XHRBackend, 
+      useClass: AuthenticateXHRBackend,
+    },
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+ }
