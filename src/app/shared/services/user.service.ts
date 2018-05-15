@@ -17,6 +17,7 @@ import '../../rxjs-operators';
 export class UserService extends BaseService {
 
   baseUrl: string = '';
+  userEmail: string = '';
 
   // Observable navItem source
   private _authNavStatusSource = new BehaviorSubject<boolean>(false);
@@ -60,6 +61,7 @@ export class UserService extends BaseService {
             .map(res => {
                 localStorage.setItem('auth_token', res.auth_token);
                 this.loggedIn = true;
+                this.userEmail = email;
                 this._authNavStatusSource.next(true);
                 return true;
             })          
@@ -71,6 +73,7 @@ export class UserService extends BaseService {
   logout() {
     localStorage.removeItem('auth_token');
     this.loggedIn = false;
+    this.userEmail = '';
     this._authNavStatusSource.next(false);
   }
 

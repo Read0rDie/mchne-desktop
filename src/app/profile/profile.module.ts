@@ -8,6 +8,7 @@ import { ProfileDashboardComponent } from './profile-dashboard/profile-dashboard
 
 import { routing }  from './profile.routing';
 import { AvatarComponent } from './profile-dashboard/avatar/avatar.component';
+import { UserService } from '../shared/services/user.service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { AvatarComponent } from './profile-dashboard/avatar/avatar.component';
     routing
   ],
   declarations: [AvatarSelectionComponent, ProfileDashboardComponent, AvatarComponent],
-  providers:    [ AvatarService ]
+  providers:    [ AvatarService, UserService ]
 })
 export class ProfileModule { }

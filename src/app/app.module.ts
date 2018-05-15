@@ -23,6 +23,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LibraryComponent } from './library/library.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SharedModule } from './shared/modules/shared.module';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     AccountModule,
     ProfileModule,
     HttpModule,
+    SharedModule.forRoot(),
     BsDropdownModule.forRoot(),
     AppRoutingModule,
   ],

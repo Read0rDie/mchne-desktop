@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { URLSearchParams, Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { UserRegistration } from '../models/user.registration.interface';
 import { ConfigService } from '../utils/config.service';
@@ -16,9 +16,7 @@ import '../../rxjs-operators';
 
 export class AvatarService extends BaseService {
 
-  baseUrl: string = '';
-  api_key: string = '';
-  api_secret: string = '';
+  baseUrl: string = '';  
 
   // Observable navItem source
   private _authNavStatusSource = new BehaviorSubject<boolean>(false);
@@ -36,8 +34,29 @@ export class AvatarService extends BaseService {
     this.baseUrl = configService.getApiURI();
   }
 
-  getImage(){
+  getImage(email: string){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('email', email);    
+    options.params = params;
 
+    var response = this.http.get(this.baseUrl + "/account/getavatar", options).map(res => res.json());
+
+    return response;
+  }
+
+  changeAvatar(email: string, url : string){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('email', email);
+    params.set('imageUrl', url);
+    options.params = params;
+
+    var response = this.http.get(this.baseUrl + "/account/changeavatar", options).map(res => res.json());
+
+    return response;
   }
 
   getSelection(){

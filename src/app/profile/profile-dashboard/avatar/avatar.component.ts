@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AvatarService } from '../../../shared/services/avatar.service';
+import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-avatar',
@@ -7,15 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvatarComponent implements OnInit {
 
-  imageUrl;
+  imageUrl: string;
 
-  constructor() { }
+  constructor(private avatarService: AvatarService,  private userService: UserService) { }
 
   ngOnInit() {
+    this.avatarService.getImage(this.userService.userEmail)
+      .subscribe(res => this.imageUrl = res);
   }
 
-  setUrl(email : string){
-
+  setAvatarUrl(url : string){
+    this.avatarService.changeAvatar(this.userService.userEmail, url)
+      .subscribe(res => this.imageUrl = res);
   }
 
 }
