@@ -5,6 +5,6 @@ import { AvatarSelectionComponent }    from './avatar-selection/avatar-selection
 import { ProfileDashboardComponent }    from './profile-dashboard/profile-dashboard.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
-  { path: 'avatar', component: AvatarSelectionComponent},
+  { path: 'profile/avatars', component: AvatarSelectionComponent},
   { path: 'profile', component: ProfileDashboardComponent}
 ]);

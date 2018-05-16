@@ -12,9 +12,13 @@ export class AvatarSelectionComponent implements OnInit {
 
   avatarList;
 
-  constructor(private avatarService: AvatarService, private router: Router) {}  
+  constructor(private avatarService: AvatarService, private router: Router) {}
 
-   selectAvatar(){      
+   selectAvatar(url:string){  
+     console.log("Url : ", url);
+     console.log("Email: ", localStorage.email)
+     this.avatarService.changeAvatar(localStorage.email, url);
+     this.router.navigateByUrl('/profile');
    }
 
   ngOnInit() {

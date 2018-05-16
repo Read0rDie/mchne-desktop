@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { UserLogin } from '../../shared/models/user.login.interface';
 import { UserService } from '../../shared/services/user.service';
+import { AvatarService } from '../../shared/services/avatar.service';
+
 
 @Component({
   selector: 'app-login-form',
@@ -21,7 +23,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   submitted: boolean = false;
   credentials: UserLogin = { email: '', password: '' };
 
-  constructor(private userService: UserService, private router: Router,private activatedRoute: ActivatedRoute) { }
+  constructor(private avatarService: AvatarService, private userService: UserService, private router: Router,private activatedRoute: ActivatedRoute) { }
 
     ngOnInit() {
 
@@ -49,7 +51,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
           result => {                               
             if (result) {
               this.changeEmail(value.email);
-              this.router.navigate(['']);             
+              this.router.navigate(['']);
+              this.avatarService.getAvatar(value.email);             
             }
           },
           error => this.errors = error);        

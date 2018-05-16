@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { URLSearchParams, Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Component, Input } from '@angular/core';
 
 import { UserRegistration } from '../models/user.registration.interface';
 import { ConfigService } from '../utils/config.service';
@@ -16,7 +17,14 @@ import '../../rxjs-operators';
 
 export class AvatarService extends BaseService {
 
-  baseUrl: string = '';  
+  baseUrl: string = '';
+
+  // Observable ImageUrl source
+  private _imageUrl : BehaviorSubject<string>;
+  // Data store for ImageUrl
+  private dataStore : {
+    imageUrl : string
+  }
 
   // Observable navItem source
   private _authNavStatusSource = new BehaviorSubject<boolean>(false);
@@ -32,16 +40,24 @@ export class AvatarService extends BaseService {
     // header component resulting in authed user nav links disappearing despite the fact user is still logged in
     this._authNavStatusSource.next(this.loggedIn);
     this.baseUrl = configService.getApiURI();
+    this.dataStore = { imageUrl : '' }
+    this._imageUrl = <BehaviorSubject<string>>new BehaviorSubject('');
+
   }
 
-  getImage(email: string){
+  getAvatar(email: string){
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    let params: URLSearchParams = new URLSearchParams();
+    let params: URLSearchParams = new URLSearchParams();    
     params.set('email', email);    
     options.search = params;
-
-    var response = this.http.get(this.baseUrl + "/account/getavatar", options).map(res => res.json().avatarUrl);
+    var response = this.http.get(this.baseUrl + "/account/getavatar", options)
+      .subscribe(res => {
+        this.dataStore.imageUrl = res.json().avatarUrl;
+        this._imageUrl.next(Object.assign('', this.dataStore).imageUrl);
+      }, 
+      error => console.log('ImageUrl failed to load'));   
+          
     return response;
   }
 
@@ -53,7 +69,13 @@ export class AvatarService extends BaseService {
     params.set('imageUrl', url);
     options.search = params;
 
-    var response = this.http.get(this.baseUrl + "/account/changeavatar", options).map(res => res.json());
+    var response = this.http.get(this.baseUrl + "/account/changeavatar", options)
+      .subscribe(res => {
+        this.dataStore.imageUrl = url;
+        this._imageUrl.next(Object.assign('', this.dataStore).imageUrl);
+      }, 
+      error => console.log('ImageUrl failed to load'));
+      
     return response;
   }
 
@@ -64,5 +86,11 @@ export class AvatarService extends BaseService {
     return response;
   }
 
-      
+  get ImageUrl(){    
+      return this._imageUrl.asObservable();
+  }
+
+  get _Image(){
+    return this._imageUrl.value;
+  }
 }

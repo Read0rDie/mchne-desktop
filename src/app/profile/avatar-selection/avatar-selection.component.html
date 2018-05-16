@@ -1,5 +1,5 @@
 <div class="row contain">
   <div class="div-icon" *ngFor="let avatar of avatarList">
-    <img src="{{avatar.url}}">
+    <img src="{{avatar.url}}" (click)="selectAvatar(avatar.url)">
   </div>
 </div>>

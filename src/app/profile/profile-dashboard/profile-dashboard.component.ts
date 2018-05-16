@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AvatarService } from '../../shared/services/avatar.service';
 import { UserService } from '../../shared/services/user.service';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-profile-dashboard',
@@ -9,24 +10,17 @@ import { UserService } from '../../shared/services/user.service';
 })
 export class ProfileDashboardComponent implements OnInit {
 
-  imageUrl : string = '';
+  
+  imageUrl : Observable<string>;
 
   constructor(private avatarService: AvatarService, private userService : UserService) {
-    this.getAvatarUrl();
-   }
+    }
 
-  ngOnInit() {
-  }
-
-  getAvatarUrl(){    
-    let url : string = '';
-    this.avatarService.getImage(localStorage.email)
-        .subscribe(res => this.imageUrl = res);    
-  }
-
-  setAvatarUrl(url : string){
-    this.avatarService.changeAvatar(localStorage.email, url)
-      .subscribe(res => this.imageUrl = res );
-  } 
+  ngOnInit() {   
+    if(this.avatarService._Image == ''){
+      this.avatarService.getAvatar(localStorage.email);
+    }
+    this.imageUrl = this.avatarService.ImageUrl;
+  }  
 
 }
