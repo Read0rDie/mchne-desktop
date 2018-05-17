@@ -6,6 +6,7 @@ import { AvatarSelectionComponent } from './avatar-selection/avatar-selection.co
 import { ProfileDashboardComponent } from './profile-dashboard/profile-dashboard.component';
 
 import { routing }  from './profile.routing';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import { routing }  from './profile.routing';
     SharedModule,
     routing
   ],
-  declarations: [AvatarSelectionComponent, ProfileDashboardComponent],
+  declarations: [AvatarSelectionComponent, ProfileDashboardComponent, ProfileEditComponent],
   providers: []
 })
 export class ProfileModule { }
