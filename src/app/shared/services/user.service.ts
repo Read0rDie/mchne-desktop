@@ -76,6 +76,14 @@ export class UserService extends BaseService {
     this._authNavStatusSource.next(false);
   }
 
+  changeUserName(username: string){
+
+  }
+
+  get userName(){
+    return '';
+  }
+
   isLoggedIn() {
     return this.loggedIn;
   }  

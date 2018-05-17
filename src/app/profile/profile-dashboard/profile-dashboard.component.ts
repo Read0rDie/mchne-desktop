@@ -12,6 +12,7 @@ export class ProfileDashboardComponent implements OnInit {
 
   
   imageUrl : Observable<string>;
+  userName : Observable<string>;
 
   constructor(private avatarService: AvatarService, private userService : UserService) {
     }
