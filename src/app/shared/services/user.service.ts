@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { URLSearchParams, Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { UserRegistration } from '../models/user.registration.interface';
 import { ConfigService } from '../utils/config.service';
@@ -19,6 +19,13 @@ export class UserService extends BaseService {
   baseUrl: string = '';
   userEmail: string = '';
 
+  // Observable Username source
+  private _username : BehaviorSubject<string>;
+  // Data store for ImageUrl
+  private dataStore : {
+    username : string
+  }
+
   // Observable navItem source
   private _authNavStatusSource = new BehaviorSubject<boolean>(false);
   // Observable navItem stream
@@ -33,6 +40,8 @@ export class UserService extends BaseService {
     // header component resulting in authed user nav links disappearing despite the fact user is still logged in
     this._authNavStatusSource.next(this.loggedIn);
     this.baseUrl = configService.getApiURI();
+    this.dataStore = { username : '' }
+    this._username = <BehaviorSubject<string>>new BehaviorSubject('');
   }
 
     register(email: string, password: string, userName: string): Observable<boolean> {
@@ -77,11 +86,32 @@ export class UserService extends BaseService {
   }
 
   changeUserName(username: string){
-
+    
   }
 
-  get userName(){
-    return '';
+  getUserName(email: string){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let params: URLSearchParams = new URLSearchParams();    
+    params.set('email', email);    
+    options.search = params;
+    var response = this.http.get(this.baseUrl + "/account/user", options)
+      .subscribe(res => {
+        this.dataStore.username = res.json().identity.alias;
+        this._username.next(Object.assign('', this.dataStore).username);
+      }, 
+      error => console.log('Failed to fetch username'));   
+          
+    return response;
+    
+  }
+
+  get UserName(){
+    return this._username.asObservable();
+  }
+
+  get _UserName(){
+    return this._username.value;
   }
 
   isLoggedIn() {

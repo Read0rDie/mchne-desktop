@@ -21,7 +21,12 @@ export class ProfileDashboardComponent implements OnInit {
     if(this.avatarService._Image == ''){
       this.avatarService.getAvatar(localStorage.email);
     }
+    if(this.userService._UserName == ''){
+      this.userService.getUserName(localStorage.email);
+    }
     this.imageUrl = this.avatarService.ImageUrl;
+    this.userName = this.userService.UserName;
+
   }  
 
 }
