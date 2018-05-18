@@ -51,8 +51,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
           result => {                               
             if (result) {
               this.changeEmail(value.email);
-              this.router.navigate(['']);
               this.avatarService.getAvatar(value.email);             
+              this.router.navigate(['']);
             }
           },
           error => this.errors = error);        

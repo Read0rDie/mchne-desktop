@@ -7,22 +7,22 @@
   <!--
   <div class="row">
     <div class="col-md-6">
-        <form #f="ngForm" novalidate (ngSubmit)="login(f)">
+        <form #f="ngForm" novalidate (ngSubmit)="editProfile(f)">
             
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="text" required name="email" class="form-control" placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
+              <input id="email" type="text" required name="email" class="form-control" placeholder="{{update.oldEmail}}" [(ngModel)]="update.newEmail" #email="ngModel" tmFocus validateEmail>
               <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
             </div>
             
             <div class="form-group">
               <label for="email">Username</label>
-              <input id="email" type="text" required name="email" class="form-control" placeholder="Username" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
+              <input id="username" type="text" required name="username" class="form-control" placeholder="{{update.oldUsername}}" [(ngModel)]="credentials.newUsername">
               <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
             </div>
   
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" [disabled]="f.invalid || isRequesting">Login</button>
+                <button type="submit" class="btn btn-primary" [disabled]="f.invalid || isRequesting">Update</button>
                 <app-spinner [isRunning]="isRequesting"></app-spinner> 
             </div>
   

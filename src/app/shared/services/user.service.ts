@@ -85,9 +85,24 @@ export class UserService extends BaseService {
     this._authNavStatusSource.next(false);
   }
 
-  changeUserName(username: string){
+  setUserProfile(username: string, email: string){
+
+    let body = JSON.stringify({ email, username });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    var response = this.http.post(this.baseUrl + "/account/login", body, options)                  
+        .map(res => res.json())              
+        .map(res => {
+            localStorage.setItem('email', email);
+            this.dataStore.username;
+            this._username.next(Object.assign('', this.dataStore).username);             
+            return true;
+        })          
+        .catch(this.handleError);
+    return response;
     
-  }
+  }  
 
   getUserName(email: string){
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -95,7 +110,7 @@ export class UserService extends BaseService {
     let params: URLSearchParams = new URLSearchParams();    
     params.set('email', email);    
     options.search = params;
-    var response = this.http.get(this.baseUrl + "/account/user", options)
+    var response = this.http.get(this.baseUrl + "/account/userdata", options)
       .subscribe(res => {
         this.dataStore.username = res.json().identity.alias;
         this._username.next(Object.assign('', this.dataStore).username);
