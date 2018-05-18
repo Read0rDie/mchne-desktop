@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule }   from '../shared/modules/shared.module';
+import { FormsModule }  from '@angular/forms';
+
 
 import { AvatarSelectionComponent } from './avatar-selection/avatar-selection.component';
 import { ProfileDashboardComponent } from './profile-dashboard/profile-dashboard.component';
@@ -11,6 +13,7 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     SharedModule,
     routing
   ],

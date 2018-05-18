@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule, XHRBackend } from '@angular/http';
+import { EmailValidator } from './directives/email.validator.directive';
+
 
 /* Third Party Imports */
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -30,7 +32,8 @@ import { GlobalServiceModule } from './shared/modules/global-service.module';
     AppComponent,
     HomeComponent,
     LibraryComponent,
-    NavbarComponent,             
+    NavbarComponent,  
+    EmailValidator,           
   ],
   imports: [
     BrowserModule,

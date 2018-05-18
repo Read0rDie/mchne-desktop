@@ -85,17 +85,20 @@ export class UserService extends BaseService {
     this._authNavStatusSource.next(false);
   }
 
-  setUserProfile(username: string, email: string){
+  setUserProfile(username: string, email: string, newEmail: string){
 
-    let body = JSON.stringify({ email, username });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('username', username);
+    params.set('email', email);
+    params.set('newEmail', newEmail);
+    options.search = params;    
 
-    var response = this.http.post(this.baseUrl + "/account/login", body, options)                  
-        .map(res => res.json())              
-        .map(res => {
+    var response = this.http.get(this.baseUrl + "/account/edit", options)                     
+        .map(res => {            
             localStorage.setItem('email', email);
-            this.dataStore.username;
+            this.dataStore.username = username;
             this._username.next(Object.assign('', this.dataStore).username);             
             return true;
         })          

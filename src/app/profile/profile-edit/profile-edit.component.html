@@ -4,21 +4,21 @@
         <h2>Edit Profile Details</h2>        
     </div>
   </div>
-  <!--
+  
   <div class="row">
     <div class="col-md-6">
         <form #f="ngForm" novalidate (ngSubmit)="editProfile(f)">
             
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="text" required name="email" class="form-control" placeholder="{{update.oldEmail}}" [(ngModel)]="update.newEmail" #email="ngModel" tmFocus validateEmail>
+              <input id="email" type="text" required name="email" class="form-control" placeholder="{{original.email}}" [(ngModel)]="update.email" #email="ngModel" tmFocus validateEmail>
               <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
             </div>
             
             <div class="form-group">
               <label for="email">Username</label>
-              <input id="username" type="text" required name="username" class="form-control" placeholder="{{update.oldUsername}}" [(ngModel)]="credentials.newUsername">
-              <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
+              <input id="username" type="text" required name="username" class="form-control" placeholder="{{original.username}}" [(ngModel)]="update.username">
+          <!--    <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small> -->
             </div>
   
             <div class="form-group">
@@ -33,5 +33,5 @@
         </form>
     </div>
   </div>
--->
+
 </div>

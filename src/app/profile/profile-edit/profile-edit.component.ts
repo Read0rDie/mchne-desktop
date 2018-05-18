@@ -4,7 +4,6 @@ import { UserService } from '../../shared/services/user.service';
 import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-profile-edit',
   templateUrl: './profile-edit.component.html',
@@ -15,8 +14,9 @@ export class ProfileEditComponent implements OnInit {
   isRequesting: boolean;
   submitted: boolean = false;
   errors: string;
-  userName : Observable<string>;
-  update: UserDetails = { oldEmail: '', newEmail: '', oldUsername: '', newUsername: '' };
+  original: UserDetails = { email: '', username: '' };
+  update: UserDetails = { email: '', username: '' };
+
 
   constructor(private userService: UserService, private router: Router ) {
 
@@ -26,33 +26,41 @@ export class ProfileEditComponent implements OnInit {
     if(this.userService._UserName == ''){
       this.userService.getUserName(localStorage.email);
     }
-    this.update.oldEmail = localStorage.email;
-    this.update.oldUsername = this.userService._UserName;
+    this.original.email = localStorage.email;
+    this.original.username = this.userService._UserName;
   }
 
-  editProfile({ value, valid }: { value: UserDetails, valid: boolean }){
+  editProfile({ update, valid }: { update: UserDetails, valid: boolean }){
+    console.log('valid: ' ,valid);
+    console.log('old user: ' ,this.original.username);
+    console.log('old email: ' ,this.original.email);
+    console.log('new user: ' ,this.update.username);
+    console.log('new email: ' ,this.update.email);
     this.submitted = true;
     this.isRequesting = true;
     this.errors='';
     if(valid){
-      this.updateUserData(value);
+      this.updateUserData(this.update, this.original);
     }
 
   }
 
-  updateUserData(value: UserDetails){
-    if(value.newUsername != value.oldUsername || value.newEmail != value.oldEmail){
-      this.userService.setUserProfile(value.newUsername, value.newEmail)
+  updateUserData(update: UserDetails, old: UserDetails){
+    //console.log('new user' ,value.newUsername);
+    //console.log('old user' ,value.oldUsername);
+
+    if(update.username != old.username || update.email != old.email){
+      this.userService.setUserProfile(update.username, old.email, update.email)
         .finally(() => this.isRequesting = false)
         .subscribe(
-          result => {                               
+          result => {   
             if (result) {
-              value.oldUsername = value.newUsername;
-              value.oldEmail = value.newEmail;
-              this.changeEmail(value.newEmail);
+              old.username = update.username;
+              old.email = update.email;
+              this.changeEmail(update.email);
               this.router.navigate(['/profile']);                           
-              }
-            },
+            }
+          },
           error => this.errors = error);
     }    
     else{
@@ -62,7 +70,7 @@ export class ProfileEditComponent implements OnInit {
   }  
 
   refreshUsername(){
-    this.update.oldUsername = this.userService._UserName;
+    this.update.username = this.userService._UserName;
   }
 
   changeEmail(email:string){
