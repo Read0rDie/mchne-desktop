@@ -51,7 +51,7 @@ export class AvatarService extends BaseService {
     let params: URLSearchParams = new URLSearchParams();    
     params.set('email', email);    
     options.search = params;
-    var response = this.http.get(this.baseUrl + "/account/getavatar", options)
+    var response = this.http.get(this.baseUrl + "/avatar/getavatar", options)
       .subscribe(res => {
         this.dataStore.imageUrl = res.json().avatarUrl;
         this._imageUrl.next(Object.assign('', this.dataStore).imageUrl);
@@ -69,7 +69,7 @@ export class AvatarService extends BaseService {
     params.set('imageUrl', url);
     options.search = params;
 
-    var response = this.http.get(this.baseUrl + "/account/changeavatar", options)
+    var response = this.http.get(this.baseUrl + "/avatar/changeavatar", options)
       .subscribe(res => {
         this.dataStore.imageUrl = url;
         this._imageUrl.next(Object.assign('', this.dataStore).imageUrl);
@@ -82,7 +82,7 @@ export class AvatarService extends BaseService {
   getSelection(){
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });    
-    var response = this.http.get(this.baseUrl + "/account/allavatars", options).map(res => res.json().resources);
+    var response = this.http.get(this.baseUrl + "/avatar/allavatars", options).map(res => res.json().resources);
     return response;
   }
 
