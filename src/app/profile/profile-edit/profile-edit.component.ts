@@ -31,11 +31,6 @@ export class ProfileEditComponent implements OnInit {
   }
 
   editProfile({ update, valid }: { update: UserDetails, valid: boolean }){
-    console.log('valid: ' ,valid);
-    console.log('old user: ' ,this.original.username);
-    console.log('old email: ' ,this.original.email);
-    console.log('new user: ' ,this.update.username);
-    console.log('new email: ' ,this.update.email);
     this.submitted = true;
     this.isRequesting = true;
     this.errors='';
@@ -46,8 +41,6 @@ export class ProfileEditComponent implements OnInit {
   }
 
   updateUserData(update: UserDetails, old: UserDetails){
-    //console.log('new user' ,value.newUsername);
-    //console.log('old user' ,value.oldUsername);
 
     if(update.username != old.username || update.email != old.email){
       this.userService.setUserProfile(update.username, old.email, update.email)
@@ -64,6 +57,7 @@ export class ProfileEditComponent implements OnInit {
           error => this.errors = error);
     }    
     else{
+      this.isRequesting = false;
       this.errors = "No changes to user details detected";
     }
 
