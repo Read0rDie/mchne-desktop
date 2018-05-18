@@ -17,7 +17,6 @@ export class ProfileEditComponent implements OnInit {
   original: UserDetails = { email: '', username: '' };
   update: UserDetails = { email: '', username: '' };
 
-
   constructor(private userService: UserService, private router: Router ) {
 
   }
