@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container page-margin">
   <div class="row">
     <div class="col-md-6 new-user-alert">          
         <h2>Edit Profile Details</h2>        
@@ -17,19 +17,22 @@
             
             <div class="form-group">
               <label for="email">Username</label>
-              <input id="username" type="text" required name="username" class="form-control" placeholder="{{original.username}}" [(ngModel)]="update.username">
-          <!--    <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small> -->
+              <input id="username" type="text" required name="username" class="form-control" placeholder="{{original.username}}" [(ngModel)]="update.username">          
             </div>
   
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" [disabled]="f.invalid || isRequesting">Update</button>
-                <a class="nav-link profile-button" routerLinkActive="active" routerLink="/profile">Cancel</a>
-                <app-spinner [isRunning]="isRequesting"></app-spinner> 
+              <div class="row page-section">
+                <button type="submit" class="nav-link button button-update" [disabled]="f.invalid || isRequesting">Update</button>
+                <button class="nav-link button button-cancel" routerLinkActive="active" routerLink="/profile">Cancel</button>
+              </div>
+              <div class="row section">
+                <app-spinner [isRunning]="isRequesting"></app-spinner>
+              </div>
             </div>
   
             <div *ngIf="errors" class="alert alert-danger" role="alert">
                 <strong>Oops!</strong> {{errors}}
-              </div> 
+            </div> 
             
         </form>
     </div>

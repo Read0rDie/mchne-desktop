@@ -32,13 +32,16 @@ export class UserService extends BaseService {
   authNavStatus$ = this._authNavStatusSource.asObservable();
 
   private loggedIn = false;
+  private username = '';
 
   constructor(private http: Http, private configService: ConfigService) {
     super();
     this.loggedIn = !!localStorage.getItem('auth_token');
+    this.username = localStorage.getItem('username');
     // ?? not sure if this the best way to broadcast the status but seems to resolve issue on page refresh where auth status is lost in
     // header component resulting in authed user nav links disappearing despite the fact user is still logged in
     this._authNavStatusSource.next(this.loggedIn);
+    //this._username.next(this.username);
     this.baseUrl = configService.getApiURI();
     this.dataStore = { username : '' }
     this._username = <BehaviorSubject<string>>new BehaviorSubject('');
@@ -98,6 +101,7 @@ export class UserService extends BaseService {
     var response = this.http.get(this.baseUrl + "/account/edit", options)                     
         .map(res => {            
             localStorage.setItem('email', email);
+            localStorage.setItem('username', username);
             this.dataStore.username = username;
             this._username.next(Object.assign('', this.dataStore).username);             
             return true;
@@ -116,6 +120,7 @@ export class UserService extends BaseService {
     var response = this.http.get(this.baseUrl + "/account/userdata", options)
       .subscribe(res => {
         this.dataStore.username = res.json().identity.alias;
+        localStorage.setItem('username', this.dataStore.username);
         this._username.next(Object.assign('', this.dataStore).username);
       }, 
       error => console.log('Failed to fetch username'));   

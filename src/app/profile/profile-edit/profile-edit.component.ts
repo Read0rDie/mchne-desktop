@@ -25,8 +25,9 @@ export class ProfileEditComponent implements OnInit {
     if(this.userService._UserName == ''){
       this.userService.getUserName(localStorage.email);
     }
-    this.original.email = localStorage.email;
-    this.original.username = this.userService._UserName;
+    this.original.email = localStorage.email;    
+    //this.original.username = this.userService._UserName;
+    this.original.username = localStorage.username;
   }
 
   editProfile({ update, valid }: { update: UserDetails, valid: boolean }){
