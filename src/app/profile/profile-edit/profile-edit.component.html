@@ -11,7 +11,7 @@
             
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="text" required name="email" class="form-control" placeholder="{{original.email}}" [(ngModel)]="update.email" #email="ngModel" tmFocus validateEmail>
+              <input id="email" type="text" required name="email" class="form-control" placeholder="{{original.email}}" [ngModel]="update.email" #email="ngModel" tmFocus validateEmail>
               <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
             </div>
             

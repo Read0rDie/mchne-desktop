@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDetails } from '../../shared/models/user.details.interface';
 import { UserService } from '../../shared/services/user.service';
-import { Observable } from 'rxjs/Rx';
-import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs/Rx';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile-edit',
@@ -11,13 +11,15 @@ import { Router } from '@angular/router';
 })
 export class ProfileEditComponent implements OnInit {
 
+  private subscription: Subscription;
+
   isRequesting: boolean;
   submitted: boolean = false;
   errors: string;
   original: UserDetails = { email: '', username: '' };
   update: UserDetails = { email: '', username: '' };
 
-  constructor(private userService: UserService, private router: Router ) {
+  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute ) {
 
   }
   
@@ -26,8 +28,9 @@ export class ProfileEditComponent implements OnInit {
       this.userService.getUserName(localStorage.email);
     }
     this.original.email = localStorage.email;    
-    //this.original.username = this.userService._UserName;
     this.original.username = localStorage.username;
+    this.update.email = localStorage.email;    
+    this.update.username = localStorage.username;
   }
 
   editProfile({ update, valid }: { update: UserDetails, valid: boolean }){
