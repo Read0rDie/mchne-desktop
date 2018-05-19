@@ -1,5 +1,13 @@
-<div class="row contain">
-  <div class="div-icon" *ngFor="let avatar of avatarList">
-    <img src="{{avatar.url}}" (click)="selectAvatar(avatar.url)">
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 new-user-alert title">          
+          <h2>Select an Avatar</h2>        
+      </div>
+    </div>
+
+  <div class="row contain">
+    <div class="div-icon" *ngFor="let avatar of avatarList">
+      <img src="{{avatar.url}}" (click)="selectAvatar(avatar.url)" class="img">
+    </div>
   </div>
 </div>
