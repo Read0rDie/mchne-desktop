@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AvatarService } from '../../shared/services/avatar.service';
 import { UserService } from '../../shared/services/user.service';
 import { Observable } from 'rxjs/Rx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-dashboard',
@@ -14,7 +15,7 @@ export class ProfileDashboardComponent implements OnInit {
   imageUrl : Observable<string>;
   userName : Observable<string>;
 
-  constructor(private avatarService: AvatarService, private userService : UserService) {
+  constructor(private avatarService: AvatarService, private userService : UserService, private router : Router) {
     }
 
   ngOnInit() {   
@@ -27,6 +28,10 @@ export class ProfileDashboardComponent implements OnInit {
     this.imageUrl = this.avatarService.ImageUrl;
     this.userName = this.userService.UserName;
 
-  }  
+  } 
+  
+  avatarSelection(){
+    this.router.navigate(['/profile/avatar']);
+  }
 
 }

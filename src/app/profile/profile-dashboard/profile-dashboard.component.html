@@ -2,33 +2,36 @@
 <div class="container profile-container">
     <div class="row">
         <div class="col-md-3">
-            <img src="{{imageUrl.source._value}}" class="profile-avatar"> 
-            <a class="nav-link profile-button" routerLinkActive="active" routerLink="/profile/avatars">Change Avatar</a>
+            <div class="avatar-container">
+                <img src="{{imageUrl.source._value}}" class="avatar-img">
+                <a class="nav-link avatar-fade" routerLinkActive="active" routerLink="/profile/avatars">Change Avatar</a>
+            </div>
+        <!--    <a class="nav-link profile-button" routerLinkActive="active" routerLink="/profile/avatars">Change Avatar</a> -->
         </div>
         <div class="col-md-3">
             <h1 class="profile-greeting">Hello {{userName.source._value}}!</h1>
         </div>
         <div class="col-md-6">
-            <table class="profile-table">
-                <tr class="profile-row" valign="middle">
+            <table class="dash-table">
+                <tr valign="middle">
                     <ul class="profile-menu-ul">
-                        <a class="nav-link profile-menu-li profile-dashlink" routerLinkActive="active" routerLink="/profile/delete">
-                            <div class="profile-dashbutton">
-                                    <i class="fas fa-trash-alt profile-icon"></i>
+                        <a class="nav-link profile-menu-li dash-link" routerLinkActive="active" routerLink="/profile/delete">
+                            <div class="dash-button">
+                                    <i class="fas fa-trash-alt dash-icon"></i>
                             </div>
-                            <li class="profile-dashtag">Delete Account</li>
+                            <li class="dash-tag">Delete Account</li>
                         </a>                
-                        <a class="nav-link profile-menu-li profile-dashlink" routerLinkActive="active" routerLink="/profile/password">
-                            <div class="profile-dashbutton">
-                                    <i class="fas fa-unlock-alt profile-icon"></i>
+                        <a class="nav-link profile-menu-li dash-link" routerLinkActive="active" routerLink="/profile/password">
+                            <div class="dash-button">
+                                    <i class="fas fa-unlock-alt dash-icon"></i>
                             </div>
-                            <li class="profile-dashtag">Change Password</li>
+                            <li class="dash-tag">Change Password</li>
                         </a>
-                        <a class="nav-link profile-menu-li profile-dashlink" routerLinkActive="active" routerLink="/profile/edit">
-                            <div class="profile-dashbutton">
-                                    <i class="fas fa-pencil-alt profile-icon"></i>
+                        <a class="nav-link profile-menu-li dash-link" routerLinkActive="active" routerLink="/profile/edit">
+                            <div class="dash-button">
+                                    <i class="fas fa-pencil-alt dash-icon"></i>
                             </div>
-                            <li class="profile-dashtag">Edit Details</li>
+                            <li class="dash-tag">Edit Details</li>
                         </a>
                     </ul>        
                 </tr>
