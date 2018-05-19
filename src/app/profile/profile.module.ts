@@ -9,6 +9,8 @@ import { ProfileDashboardComponent } from './profile-dashboard/profile-dashboard
 
 import { routing }  from './profile.routing';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { PasswordEditComponent } from './password-edit/password-edit.component';
+import { ProfileDeleteComponent } from './profile-delete/profile-delete.component';
 
 @NgModule({
   imports: [
@@ -17,7 +19,7 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
     SharedModule,
     routing
   ],
-  declarations: [AvatarSelectionComponent, ProfileDashboardComponent, ProfileEditComponent],
+  declarations: [AvatarSelectionComponent, ProfileDashboardComponent, ProfileEditComponent, PasswordEditComponent, ProfileDeleteComponent],
   providers: []
 })
 export class ProfileModule { }
