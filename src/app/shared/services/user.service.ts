@@ -109,7 +109,17 @@ export class UserService extends BaseService {
         .catch(this.handleError);
     return response;
     
-  }  
+  }
+
+  setUserPassword(email: string, oldpassword : string, newpassword : string){
+    let body = JSON.stringify({ email, oldpassword, newpassword });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.put(this.baseUrl + "/account/password", body, options)
+      .map(res => true)
+      .catch(this.handleError);
+  }
 
   getUserName(email: string){
     let headers = new Headers({ 'Content-Type': 'application/json' });

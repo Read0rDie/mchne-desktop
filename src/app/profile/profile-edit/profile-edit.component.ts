@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDetails } from '../../shared/models/user.details.interface';
 import { UserService } from '../../shared/services/user.service';
 import { Observable, Subscription } from 'rxjs/Rx';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-edit',
@@ -19,7 +19,7 @@ export class ProfileEditComponent implements OnInit {
   original: UserDetails = { email: '', username: '' };
   update: UserDetails = { email: '', username: '' };
 
-  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute ) {
+  constructor(private userService: UserService, private router: Router) {
 
   }
   
@@ -64,12 +64,8 @@ export class ProfileEditComponent implements OnInit {
       this.errors = "No changes to user details detected";
     }
 
-  }  
-
-  refreshUsername(){
-    this.update.username = this.userService._UserName;
   }
-
+  
   changeEmail(email:string){
     localStorage.email = email;
   }
