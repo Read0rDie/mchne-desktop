@@ -121,6 +121,16 @@ export class UserService extends BaseService {
       .catch(this.handleError);
   }
 
+  deleteAccount(email: string, password: string){
+    let body = JSON.stringify({ email, password });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.put(this.baseUrl + "/account/delete", body, options)
+      .map(res => true)
+      .catch(this.handleError);    
+  }
+
   getUserName(email: string){
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
