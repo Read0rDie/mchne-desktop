@@ -28,6 +28,8 @@ import { HomeComponent } from './home/home.component';
 import { LibraryComponent } from './library/library.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { GlobalServiceModule } from './shared/modules/global-service.module';
+import { AuthGuard } from './auth.guard';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import { GlobalServiceModule } from './shared/modules/global-service.module';
     HomeComponent,
     LibraryComponent,
     NavbarComponent,  
-    EmailValidator,           
+    EmailValidator,               
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,7 @@ import { GlobalServiceModule } from './shared/modules/global-service.module';
       provide: XHRBackend, 
       useClass: AuthenticateXHRBackend,
     },
+    AuthGuard
   ],
   bootstrap: [AppComponent],
 })

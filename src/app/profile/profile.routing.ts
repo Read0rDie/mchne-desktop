@@ -7,10 +7,33 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { PasswordEditComponent } from './password-edit/password-edit.component';
 import { ProfileDeleteComponent } from './profile-delete/profile-delete.component';
 
+import { AuthGuard } from '../auth.guard';
+
 export const routing: ModuleWithProviders = RouterModule.forChild([
-  { path: 'profile/avatars', component: AvatarSelectionComponent},
-  { path: 'profile', component: ProfileDashboardComponent},
-  { path: 'profile/edit', component: ProfileEditComponent},
-  { path: 'profile/password', component: PasswordEditComponent},
-  { path: 'profile/delete', component: ProfileDeleteComponent}
+{
+  path: 'profile', 
+  canActivate: [AuthGuard],
+  children: [
+    {
+      path: '', 
+      component: ProfileDashboardComponent
+    },
+    {
+      path: 'avatars', 
+      component: AvatarSelectionComponent
+    },
+    {
+      path: 'edit', 
+      component: ProfileEditComponent
+    },
+    {
+      path: 'password', 
+      component: PasswordEditComponent
+    },
+    {
+      path: 'delete', 
+      component: ProfileDeleteComponent
+    }
+  ]
+}
 ]);
