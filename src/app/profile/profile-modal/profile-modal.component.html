@@ -1,0 +1,15 @@
+
+    <h2 mat-dialog-title>{{title}}</h2>
+    <hr>
+    <mat-dialog-content>
+      <strong>{{header}}</strong>
+      <br>
+      <br>
+      {{message}}
+    </mat-dialog-content>
+    <hr>
+    <mat-dialog-actions>
+      <button mat-raised-button (click)="confirm()">CONFIRM</button>&nbsp;
+      <button mat-raised-button (click)="cancel()">CANCEL</button>
+    </mat-dialog-actions>
+

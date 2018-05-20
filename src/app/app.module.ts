@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule, XHRBackend } from '@angular/http';
 import { EmailValidator } from './directives/email.validator.directive';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 
 /* Third Party Imports */
@@ -43,6 +45,7 @@ import { GlobalServiceModule } from './shared/modules/global-service.module';
     BsDropdownModule.forRoot(),
     AppRoutingModule,
     GlobalServiceModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     ConfigService, 
@@ -51,7 +54,7 @@ import { GlobalServiceModule } from './shared/modules/global-service.module';
       useClass: AuthenticateXHRBackend,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
  }

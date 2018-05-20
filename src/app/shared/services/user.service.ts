@@ -84,6 +84,7 @@ export class UserService extends BaseService {
   logout() {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('email');
+    localStorage.removeItem('username');
     this.loggedIn = false;    
     this._authNavStatusSource.next(false);
   }
@@ -126,7 +127,7 @@ export class UserService extends BaseService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.put(this.baseUrl + "/account/delete", body, options)
+    return this.http.post(this.baseUrl + "/account/deletes", body, options)
       .map(res => true)
       .catch(this.handleError);    
   }
