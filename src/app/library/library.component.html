@@ -1,3 +1,15 @@
-<div *ngFor="let novel of novelList">
-    <img src="{{novel.coverImage}}">
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            Filter to be placed here
+        </div>
+        <div class="col-md-8">
+            <table>
+                <tr *ngFor="let novel of novelList">
+                    <td><img class="img-novel" src="{{novel.coverImage}}"></td>
+                    <td><h4>{{novel.title}}</h4></td>
+                </tr>
+            </table>            
+        </div>
+    </div>
 </div>
