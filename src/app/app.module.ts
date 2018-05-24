@@ -29,6 +29,7 @@ import { LibraryComponent } from './library/library.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { GlobalServiceModule } from './shared/modules/global-service.module';
 import { AuthGuard } from './auth.guard';
+import { ResultsComponent } from './library/results/results.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { AuthGuard } from './auth.guard';
     HomeComponent,
     LibraryComponent,
     NavbarComponent,  
-    EmailValidator,               
+    EmailValidator, 
+    ResultsComponent,               
   ],
   imports: [
     BrowserModule,
