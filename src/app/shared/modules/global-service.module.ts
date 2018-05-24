@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { UserService } from '../services/user.service';
 import { AvatarService } from '../services/avatar.service';
+import { LibraryService } from '../services/library.service';
+
 
 @NgModule({
   imports: [
@@ -14,7 +16,7 @@ export class GlobalServiceModule {
     static forRoot(): ModuleWithProviders {
         return {
           ngModule: GlobalServiceModule,
-          providers: [UserService, AvatarService]
+          providers: [UserService, AvatarService, LibraryService]
         }
     }
 }
