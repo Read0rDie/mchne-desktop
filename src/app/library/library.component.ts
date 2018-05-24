@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http'
+import { LibraryService } from '../shared/services/library.service';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-library',
@@ -9,14 +11,11 @@ import { Http } from '@angular/http'
 export class LibraryComponent implements OnInit, OnDestroy {
 
   private req : any;
-  novelList : [any];
-  constructor(private _http:Http) { }
+  novelList;
+  constructor(private _http:Http, private libraryService : LibraryService) { }
 
   ngOnInit() {
-    this.req = this._http.get('http://localhost:5050/api/novels').subscribe(data =>{
-      console.log(data.json())
-      this.novelList = data.json() as [any]
-    })
+    this.libraryService.allNovels().subscribe(res => this.novelList = res);    
   }
 
   ngOnDestroy()
