@@ -3,3 +3,14 @@
         max-width: 150px;
     }
 }
+
+.line-breaker {
+  white-space: pre-wrap;
+}
+
+.toggle{
+    &-a{
+        color: lightgreen;
+        cursor: pointer;
+    }
+}

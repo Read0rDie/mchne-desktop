@@ -5,13 +5,20 @@
         </div>
         <div class="col-md-8">
             <table>
-                <tr *ngFor="let novel of novelList">
+                <tr *ngFor="let novel of novelList" [attr.id]="'Novel' + novel.novelID">
                     <td>
                         <img class="img-novel" src="{{novel.coverImage}}">
                     </td>
                     <td>
                         <h4>{{novel.title}}</h4>
-                        <p></p>
+                        <p *ngIf="!display[novel.novelID]" [attr.id]="'col' + novel.novelID"class="line-breaker">
+                            {{novel.synopsis | slice:0:300}}
+                            <a class="toggle-a" (click)="toggle(novel.novelID)"> ...</a>
+                        </p>
+                        <p *ngIf="display[novel.novelID]" [attr.id]="'exp' + novel.novelID"class="line-breaker">
+                            {{novel.synopsis}}
+                            <a class="toggle-a" (click)="toggle(novel.novelID)"> (collape)</a>
+                        </p>
                     </td>
                 </tr>
             </table>            

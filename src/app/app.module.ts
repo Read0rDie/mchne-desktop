@@ -30,6 +30,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { GlobalServiceModule } from './shared/modules/global-service.module';
 import { AuthGuard } from './auth.guard';
 import { ResultsComponent } from './library/results/results.component';
+import { LineBreakPipe } from './shared/pipes/line-break.pipe';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ResultsComponent } from './library/results/results.component';
     LibraryComponent,
     NavbarComponent,  
     EmailValidator, 
-    ResultsComponent,               
+    ResultsComponent,  
+    LineBreakPipe,             
   ],
   imports: [
     BrowserModule,
