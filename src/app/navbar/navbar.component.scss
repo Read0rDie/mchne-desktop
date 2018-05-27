@@ -15,4 +15,19 @@
             color: white;
         }
     }
+
+    &-img{
+        max-width: 40px;
+        max-height: 40px;
+    }
+
+    &-span{
+        text-align: center;
+    }
+}
+
+.a{
+    &-padding{
+        padding: 0;
+    }
 }
