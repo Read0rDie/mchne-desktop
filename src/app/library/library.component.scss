@@ -9,8 +9,11 @@
 }
 
 .toggle{
-    &-a{
-        color: lightgreen;
+    &-a{        
         cursor: pointer;
+    }
+
+    &-color{
+        color: orange;
     }
 }

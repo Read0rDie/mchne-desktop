@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             Filter to be placed here
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
             <table>
                 <tr *ngFor="let novel of novelList" [attr.id]="'Novel' + novel.novelID">
                     <td>
@@ -12,12 +12,12 @@
                     <td>
                         <h4>{{novel.title}}</h4>
                         <p *ngIf="!display[novel.novelID]" [attr.id]="'col' + novel.novelID"class="line-breaker">
-                            {{novel.synopsis | slice:0:300}}
-                            <a class="toggle-a" (click)="toggle(novel.novelID)"> ...</a>
+                            {{novel.synopsis | lineBreak}}
+                            <a class="toggle-a" (click)="toggle(novel.novelID)"> <strong class="toggle-color">...more</strong></a>
                         </p>
                         <p *ngIf="display[novel.novelID]" [attr.id]="'exp' + novel.novelID"class="line-breaker">
                             {{novel.synopsis}}
-                            <a class="toggle-a" (click)="toggle(novel.novelID)"> (collape)</a>
+                            <a class="toggle-a" (click)="toggle(novel.novelID)"> <strong class="toggle-color">less</strong></a>
                         </p>
                     </td>
                 </tr>
